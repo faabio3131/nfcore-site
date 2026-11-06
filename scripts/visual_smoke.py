@@ -97,11 +97,42 @@ def main() -> None:
                         states.nth(1).locator("summary").click()
                         if states.nth(1).evaluate("(n) => n.open"):
                             problems.append(f"{width}: MG não recolhe")
-                        glow = page.locator(".intel-card").first
-                        glow.hover()
-                        shadow = glow.evaluate("(n) => getComputedStyle(n).boxShadow")
-                        if shadow == "none":
-                            problems.append(f"{width}: neon glow não aplicado ao card de IA")
+                        # Plano Pro e os demais cards começam SEM brilho permanente.
+                        starter = page.locator(".price-card").first
+                        pro = page.locator(".price-card.highlighted")
+                        pro_style = pro.evaluate("""n => ({
+                            border: getComputedStyle(n).borderColor,
+                            shadow: getComputedStyle(n).boxShadow,
+                            background: getComputedStyle(n).backgroundImage
+                        })""")
+                        starter_style = starter.evaluate("""n => ({
+                            border: getComputedStyle(n).borderColor,
+                            shadow: getComputedStyle(n).boxShadow,
+                            background: getComputedStyle(n).backgroundImage
+                        })""")
+                        if pro_style != starter_style or pro_style["shadow"] != "none":
+                            problems.append(f"{width}: destaque neon Pro ainda fixo: {pro_style} / {starter_style}")
+                        root_color = page.evaluate("""() => getComputedStyle(
+                            document.documentElement).getPropertyValue('--a').trim()""")
+                        if root_color != "#885cf6":
+                            problems.append(f"{width}: cor original alterada: {root_color}")
+                        for selector, label in [
+                            (".price-card.highlighted", "Pro"),
+                            (".intel-card", "IA"),
+                            (".strength-card", "diferenciais"),
+                            (".flow-tab", "fluxo"),
+                            (".region-card", "regiões"),
+                            (".card", "cards gerais"),
+                        ]:
+                            card = page.locator(selector).first
+                            original_shadow = card.evaluate("(n) => getComputedStyle(n).boxShadow")
+                            if original_shadow != "none":
+                                problems.append(f"{width}: {label} com brilho fixo: {original_shadow}")
+                            card.hover()
+                            page.wait_for_timeout(280)
+                            hover_shadow = card.evaluate("(n) => getComputedStyle(n).boxShadow")
+                            if hover_shadow == "none":
+                                problems.append(f"{width}: {label} não acende no hover")
                     if width <= 1024:
                         button = page.locator("#burger")
                         if button.is_visible():
