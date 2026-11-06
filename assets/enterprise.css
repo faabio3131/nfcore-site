@@ -178,48 +178,6 @@ html[data-p=nfcore] .notice{background:#111c31;border-color:#344360;color:#d7dde
  html[data-p=nfcore] *{scroll-behavior:auto}
 }
 
-/* NFCore visual refinement — intense violet identity, micro-interactions and municipality disclosure.
-   Scope limited to NFCore pages; accessible focus & reduced-motion fallback. */
-html[data-p=nfcore]{
- --a:#b32bff;--a2:#dc96ff;--argb:179,43,255;--hl:#e1b0ff;
- --btn:#a02af5;--ln:#3d245d;--s1:#100c1d;--s2:#1b102d;
- --mu:#c5b6d8;--dim:#aaa0bc;--glow:.35;
-}
-html[data-p=nfcore] body{
- background:
- radial-gradient(ellipse 64% 900px at 91% 4%,rgba(125,16,202,.32),transparent 74%),
- radial-gradient(ellipse 55% 820px at 4% 35%,rgba(101,8,156,.18),transparent 77%),
- #07050e;
-}
-html[data-p=nfcore] .nav{background:rgba(10,6,19,.93);border-bottom-color:rgba(199,102,255,.24)}
-html[data-p=nfcore] .phero{
- background:
- radial-gradient(ellipse 58% 88% at 79% 34%,rgba(163,28,252,.37),transparent 72%),
- radial-gradient(ellipse 65% 80% at 4% 0%,rgba(76,8,115,.21),transparent 83%),
- #06030c;
-}
-html[data-p=nfcore] .phero:before{opacity:.38}
-html[data-p=nfcore] .grad{color:#d69bff;text-shadow:0 0 33px rgba(177,52,255,.22)}
-html[data-p=nfcore] .btn.p,html[data-p=nfcore] .btn.k{
- background:linear-gradient(135deg,#a927ff,#7729da);border-color:#c563ff;
- box-shadow:0 8px 32px rgba(141,21,245,.36);
-}
-html[data-p=nfcore] .btn.p:hover,html[data-p=nfcore] .btn.k:hover{
- box-shadow:0 0 0 1px #cd7aff,0 0 34px rgba(181,33,255,.55);
-}
-html[data-p=nfcore] .soft{
- background:linear-gradient(145deg,#0b0714,#100819 65%,#090713);
- border-color:rgba(176,85,242,.19);
-}
-html[data-p=nfcore] .sentinel-section{
- background:
- radial-gradient(ellipse 70% 75% at 92% 12%,rgba(110,13,180,.24),transparent 75%),
- linear-gradient(145deg,#140b22,#0c0817 70%);
- border-color:#44215c;
-}
-html[data-p=nfcore] .card{border-color:rgba(177,104,235,.25);background:linear-gradient(155deg,#191026,#0f0b1a)}
-html[data-p=nfcore] .card:hover{border-color:#b45cff;box-shadow:0 0 0 1px rgba(172,65,255,.24),0 0 40px -17px rgba(165,45,246,.54)}
-html[data-p=nfcore] .enterprise-section{scroll-margin-top:104px}
 /* Exactly 30% reduced chip figure, without changing the original image asset. */
 html[data-p=nfcore] .phero .chip-visual{
  width:70%;max-width:70%;margin-inline:auto;
@@ -392,4 +350,139 @@ html[data-p=nfcore] .price-card.highlighted{border-color:#bc54ff;box-shadow:0 20
 @media(prefers-reduced-motion:reduce){
  .neon-card,.region-card,.region-chevron,html[data-p=nfcore] .intel-card{transition:none!important}
  .neon-card:hover,html[data-p=nfcore] .intel-card:hover{transform:none!important}
+}
+
+/* 2026-11-06 — original Enterprise palette restored.
+   Card glow is an interaction state, NEVER a persistent plan/status emphasis. */
+html[data-p=nfcore] .key-strengths{
+ background:linear-gradient(180deg,#0a0d18,#0d1120 68%,#090c17);
+ border-color:rgba(136,92,246,.16);
+}
+html[data-p=nfcore] .sentinel-section{
+ background:linear-gradient(155deg,#0e1221 0%,#0c1020 65%,#080b16 100%);
+ border-color:#202944;
+}
+html[data-p=nfcore] .geo-section{
+ background:radial-gradient(ellipse 80% 90% at 90% 0%,rgba(76,58,152,.09),transparent 72%),#0b1020;
+}
+html[data-p=nfcore] .phero .chip-visual{
+ box-shadow:0 22px 75px -42px rgba(112,78,215,.4),0 0 65px rgba(122,78,210,.12);
+}
+html[data-p=nfcore] .phero .vis:has(.chip-visual)::before{
+ background:radial-gradient(circle,rgba(118,71,212,.11),transparent 68%);
+}
+html[data-p=nfcore] .strength-card{
+ border-color:#303c58;
+ background:linear-gradient(150deg,#151d30,#0d1322);
+ box-shadow:none;
+}
+html[data-p=nfcore] .strength-symbol{color:#a996e7;text-shadow:none}
+html[data-p=nfcore] .strength-ordinal,
+html[data-p=nfcore] .strength-go,
+html[data-p=nfcore] .intel-number{color:#c5b2ff}
+html[data-p=nfcore] .strength-card p{color:#bbc7da}
+html[data-p=nfcore] .strength-disclaimer{color:#a6b1c5}
+html[data-p=nfcore] .flow-interactive{border-color:#33405d;background:#0d1424}
+html[data-p=nfcore] .flow-interactive .flow-tab,
+html[data-p=nfcore] .flow-interactive .flow-tab:first-child,
+html[data-p=nfcore] .flow-interactive .flow-tab:last-child{
+ border-color:#33405d;color:#f0f4ff;
+}
+html[data-p=nfcore] .flow-tab b{color:#ab95ec}
+html[data-p=nfcore] .flow-tab .flow-tab-hint{color:#a4b0c7}
+html[data-p=nfcore] .flow-tab.active,
+html[data-p=nfcore] .flow-tab[aria-selected=true]{
+ background:rgba(117,89,198,.12);
+ box-shadow:none;
+}
+html[data-p=nfcore] .flow-tab[aria-selected=true] .flow-tab-hint{color:#c9b9f6}
+html[data-p=nfcore] .flow-panel{
+ background:linear-gradient(130deg,#141c2e,#0d1424);
+ border-color:#34405e;
+ box-shadow:none;
+}
+html[data-p=nfcore] .flow-panel-kicker{color:#c4a8f5}
+html[data-p=nfcore] .flow-panel p{color:#bfcadd}
+html[data-p=nfcore] .flow-panel-check{
+ border-color:#9a7ee3;color:#dcd5ef;
+ background:linear-gradient(90deg,rgba(102,78,168,.13),transparent);
+}
+html[data-p=nfcore] .intel-card{
+ background:linear-gradient(150deg,#151e33,#0d1424);
+ border-color:#33405e;
+ box-shadow:none;
+}
+html[data-p=nfcore] .price-card,
+html[data-p=nfcore] .price-card.highlighted{
+ border:1px solid #33405e;
+ background:linear-gradient(155deg,#151e33,#0e1424);
+ box-shadow:none;
+}
+html[data-p=nfcore] .price-card .plan-btn,
+html[data-p=nfcore] .price-card .plan-btn.primary{
+ border-color:#56617d;color:#e5e9ff;background:#202d46;
+ box-shadow:none;
+}
+html[data-p=nfcore] .coverage-stat{
+ border-color:#374360;background:linear-gradient(135deg,#17213a,#0d1424);
+ box-shadow:none;
+}
+html[data-p=nfcore] .coverage-stat strong{color:#cab8ff}
+html[data-p=nfcore] .coverage-caveat{border-color:#374360;color:#bdc9df}
+html[data-p=nfcore] .coverage-caveat strong{color:#f0f4ff}
+html[data-p=nfcore] .region-card,
+html[data-p=nfcore] .region-card[open]{
+ border-color:#374360;background:#0f1627;box-shadow:none;
+}
+html[data-p=nfcore] .region-card>summary:hover{background:rgba(114,91,200,.11)}
+html[data-p=nfcore] .region-uf{
+ background:linear-gradient(135deg,#302653,#1c1c3a);
+ border-color:#5d539a;color:#d5c9ff;
+}
+html[data-p=nfcore] .region-body{
+ border-color:#33405e;background:linear-gradient(135deg,#131d32,#0e1525);
+}
+html[data-p=nfcore] .region-metadata span{
+ background:rgba(109,85,190,.1);color:#c3b6ee;border-color:#5c5785;
+}
+html[data-p=nfcore] .city-grid li{background:#18223a;border-color:#344260;color:#e2e7f4}
+html[data-p=nfcore] .city-grid li:hover{background:#202947;border-color:#8169d8;box-shadow:none}
+html[data-p=nfcore] .region-summary small,
+html[data-p=nfcore] .region-body>p,
+html[data-p=nfcore] .capital-paths p{color:#b7c4d8}
+html[data-p=nfcore] .region-count,
+html[data-p=nfcore] .region-chevron{color:#bdaceb}
+/* Shared REST state: no fixed neon on Pro, open coverage, selected flow or any card. */
+html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
+ transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease;
+}
+/* Desktop pointer: every card lights up only under cursor. */
+@media(hover:hover) and (pointer:fine){
+ html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):hover{
+  border-color:#a78bf3;
+  box-shadow:inset 0 0 0 1px rgba(172,146,248,.20),0 0 35px rgba(127,84,239,.3);
+  background-color:rgba(64,44,107,.16);
+ }
+ html[data-p=nfcore] :is(.strength-card,.intel-card,.price-card):hover{
+  transform:translateY(-3px);
+ }
+ html[data-p=nfcore] :is(.price-card .plan-btn):hover{
+  background:#343b68;border-color:#9983e9;
+ }
+}
+/* Mobile/tablet: focus and press feedback, without permanent hover on touch screens. */
+html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):focus-visible{
+ outline:2px solid #9983e9;outline-offset:2px;
+ border-color:#9983e9;
+}
+@media(hover:none){
+ html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):active{
+  border-color:#a78bf3;box-shadow:0 0 22px rgba(127,84,239,.22);
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
+  transition:none!important;
+ }
+ html[data-p=nfcore] :is(.strength-card,.intel-card,.price-card):hover{transform:none!important}
 }
