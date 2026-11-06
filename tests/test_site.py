@@ -107,8 +107,61 @@ class TestSiteStructure(unittest.TestCase):
                        "PR", "MT", "MS", "IBGE", "NF-e", "NFC-e", "NFS-e"):
             with self.subTest(marker=marker):
                 self.assertIn(marker, html)
-        self.assertIn("não declara todos os municípios homologados", html)
+        self.assertIn("Nenhuma cidade listada é automaticamente homologada em produção.", html)
         self.assertIn("A IA não emite nem autoriza notas", html)
+
+    def test_sp_22_municipalities_and_5_capitals_are_exact(self) -> None:
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        expected = {
+            "Barueri": "3505708", "São Paulo": "3550308",
+            "Campinas": "3509502", "Sorocaba": "3552205",
+            "Guarulhos": "3518800", "Santos": "3548500",
+            "São Caetano do Sul": "3548807", "Jundiaí": "3525904",
+            "Suzano": "3552502", "Santana de Parnaíba": "3547304",
+            "Osasco": "3534401", "Itapevi": "3522505",
+            "Jandira": "3525003", "Mairiporã": "3528502",
+            "Arujá": "3503901", "Louveira": "3527306",
+            "Valinhos": "3556206", "Itu": "3523909",
+            "Salto": "3545209", "Monte Mor": "3531803",
+            "Guarujá": "3518701", "São Vicente": "3551009",
+        }
+        rows = re.findall(
+            r'<li><span class="city-index">\d{2}</span>'
+            r'<span class="city-name">([^<]+)</span><code>(\d{7})</code></li>',
+            html,
+        )
+        self.assertEqual(len(rows), 22)
+        self.assertEqual(dict(rows), expected)
+        pilots = {
+            "MG": ("Belo Horizonte", "3106200"),
+            "RJ": ("Rio de Janeiro", "3304557"),
+            "PR": ("Curitiba", "4106902"),
+            "MT": ("Cuiabá", "5103403"),
+            "MS": ("Campo Grande", "5002704"),
+        }
+        for uf, (city, ibge) in pilots.items():
+            with self.subTest(uf=uf):
+                self.assertIn(f'class="region-uf">{uf}</span>', html)
+                self.assertIn(f"<h3>{city}</h3>", html)
+                self.assertIn(f"IBGE {ibge}", html)
+        self.assertIn("não de emissão liberada", html)
+        self.assertIn("HOMOLOGAÇÃO EXTERNA PENDENTE", html)
+
+    def test_authority_tabs_are_complete_and_interactive(self) -> None:
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count('role="tab"'), 5)
+        self.assertEqual(html.count('role="tabpanel"'), 5)
+        for number in range(1, 6):
+            self.assertIn(f'id="flow-tab-{number}"', html)
+            self.assertIn(f'aria-controls="flow-panel-{number}"', html)
+            self.assertIn(f'id="flow-panel-{number}"', html)
+            self.assertIn(f'aria-labelledby="flow-tab-{number}"', html)
+        self.assertEqual(html.count('aria-selected="true"'), 1)
+        self.assertIn("chip-visual", html)
+        self.assertIn("Segurança de nível militar", html)
+        self.assertIn("Core Cognitivo vertical", html)
+        self.assertIn("Sentinela Normativo", html)
+        self.assertIn("“Nível militar” descreve", html)
 
     def test_static_assets_and_legacy_urls(self) -> None:
         self.assertTrue((ROOT / ".nojekyll").exists())

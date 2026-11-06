@@ -66,6 +66,42 @@ def main() -> None:
                     if width in (375, 1440):
                         shot = OUT / f"{name.replace('.html','')}-{width}.png"
                         page.screenshot(path=str(shot), full_page=True)
+                    if name == "index.html" and width in (375, 1440):
+                        figure = page.locator(".chip-visual")
+                        container = page.locator(".phero .vis")
+                        ratio = figure.bounding_box()["width"] / container.bounding_box()["width"]
+                        if not 0.68 <= ratio <= 0.72:
+                            problems.append(f"chip -30% incorreto: {width}, ratio={ratio:.3f}")
+                        if page.locator(".city-grid .city-name").count() != 22:
+                            problems.append(f"{width}: SP não possui 22 municípios")
+                        if page.locator(".region-card").count() != 6:
+                            problems.append(f"{width}: faltam grupos UF")
+                        if page.locator("#flow-tab-3").count() != 1:
+                            problems.append(f"{width}: falta aba interativa")
+                        else:
+                            page.locator("#flow-tab-3").click()
+                            if page.locator("#flow-tab-3").get_attribute("aria-selected") != "true":
+                                problems.append(f"{width}: aba 3 não selecionada")
+                            if not page.locator("#flow-panel-3").is_visible():
+                                problems.append(f"{width}: painel 3 não abriu")
+                            if page.locator("#flow-panel-1").is_visible():
+                                problems.append(f"{width}: painel 1 não foi ocultado")
+                            page.locator("#flow-tab-3").press("ArrowRight")
+                            if page.locator("#flow-tab-4").get_attribute("aria-selected") != "true":
+                                problems.append(f"{width}: teclado não navega pelas abas")
+                            page.locator("#flow-tab-1").click()
+                        states = page.locator(".region-card")
+                        states.nth(1).locator("summary").click()
+                        if not states.nth(1).evaluate("(n) => n.open"):
+                            problems.append(f"{width}: MG não expande")
+                        states.nth(1).locator("summary").click()
+                        if states.nth(1).evaluate("(n) => n.open"):
+                            problems.append(f"{width}: MG não recolhe")
+                        glow = page.locator(".intel-card").first
+                        glow.hover()
+                        shadow = glow.evaluate("(n) => getComputedStyle(n).boxShadow")
+                        if shadow == "none":
+                            problems.append(f"{width}: neon glow não aplicado ao card de IA")
                     if width <= 1024:
                         button = page.locator("#burger")
                         if button.is_visible():
