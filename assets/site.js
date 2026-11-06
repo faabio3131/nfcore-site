@@ -1,6 +1,26 @@
 (function(){
   var m=document.getElementById('burger'),mn=document.getElementById('menu');
-  if(m)m.addEventListener('click',function(){mn.classList.toggle('open')});
+  if(m&&mn){
+    var closeMenu=function(){
+      mn.classList.remove('open');
+      m.setAttribute('aria-expanded','false');
+      m.setAttribute('aria-label','Abrir menu de navegação');
+    };
+    m.addEventListener('click',function(){
+      var open=mn.classList.toggle('open');
+      m.setAttribute('aria-expanded',open?'true':'false');
+      m.setAttribute('aria-label',open?'Fechar menu de navegação':'Abrir menu de navegação');
+    });
+    mn.addEventListener('click',function(e){
+      if(e.target.closest('a'))closeMenu();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&mn.classList.contains('open')){closeMenu();m.focus();}
+    });
+    document.addEventListener('click',function(e){
+      if(mn.classList.contains('open')&&!mn.contains(e.target)&&!m.contains(e.target))closeMenu();
+    });
+  }
 
   // Contagem regressiva (guia da reforma tributária). Sem JavaScript, fica só o texto com a data.
   var cd=document.getElementById('cd');
