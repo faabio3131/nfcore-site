@@ -84,19 +84,20 @@ class TestSiteStructure(unittest.TestCase):
 
     def test_pricing_is_complete_and_explicit(self) -> None:
         html = (ROOT / "index.html").read_text(encoding="utf-8")
-        for plan, amount, count, quota in (
-            ("Starter", "99", "1 CNPJ", "1.000 notas/mês"),
-            ("Pro", "249", "3 CNPJs", "5.000 notas/mês"),
-            ("Business", "590", "15 CNPJs", "25.000 notas/mês"),
-            ("Enterprise", "1.490", "ilimitada", "Contabo"),
-        ):
+        cards = re.findall(r'<article class="price-card[^"]*">(.*?)</article>', html, re.S)
+        self.assertEqual(len(cards), 4)
+        for card, (plan, amount, quota) in zip(cards, (
+            ("Starter", "99", "300"),
+            ("Pro", "249", "1.500"),
+            ("Business", "590", "6.000"),
+            ("Enterprise", "1.490", "25.000"),
+        )):
             with self.subTest(plan=plan):
-                self.assertIn(plan, html)
-                self.assertRegex(html, rf"<strong>{re.escape(amount)}</strong>")
-                self.assertIn(count, html)
-                self.assertIn(quota, html)
-                self.assertIn("Contratar " + plan, html)
-        self.assertEqual(html.count('class="price-card'), 4)
+                self.assertIn(f'<span class="price-type">{plan}</span>', card)
+                self.assertIn(f"<strong>{amount}</strong>", card)
+                self.assertIn(f"<b>{quota} notas/mês</b>", card)
+                self.assertIn("Contratar " + plan, card)
+                self.assertNotIn("ilimitad", card.lower())
         self.assertIn(WHATSAPP, html)
         self.assertIn("contratação assistida", html.lower())
 

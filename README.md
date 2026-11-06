@@ -15,7 +15,7 @@ A estrutura utiliza links relativos, `.nojekyll` e `CNAME` no raiz, sem SPA e se
 - WhatsApp: +55 11 97835-0851
 - E-mail: comercial@fmtecnologiaia.com.br
 
-Planos exibidos: Starter R$ 99, Pro R$ 249, Business R$ 590, Enterprise R$ 1.490 por mês, conforme diretriz comercial recebida em 05/11/2026. A contratação é **assistida**, sem checkout simulado. O site não altera billing, gateway, credenciais, emissão ou regras fiscais de produção.
+Planos oficiais mensais: Starter R$ 99 (300 notas), Pro R$ 249 (1.500 notas), Business R$ 590 (6.000 notas) e Enterprise R$ 1.490 (25.000 notas). A contratação é **assistida**, sem checkout simulado. O site não altera billing, gateway, credenciais, emissão ou regras fiscais de produção.
 
 ## Testes
 ```bash
