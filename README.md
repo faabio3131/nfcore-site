@@ -34,3 +34,16 @@ O commit base do repositório informa que essas páginas foram originalmente ger
 
 ## Publicação
 Site público: GitHub Pages com domínio personalizado definido em `CNAME`. O merge na `main` publica os arquivos conforme a configuração ativa do Pages; verificar deploy e navegação pública após o merge.
+
+## Revisão visual e cobertura municipal (06/11/2026)
+A segunda entrega preserva as quatro páginas estáticas e incorpora:
+- chip da home reduzido para **70% da largura anterior do contêiner** (redução de 30%);
+- fundo roxo/neon mais intenso, três pilares diferenciadores e hover glow nos cards cognitivos;
+- cinco etapas do fluxo fiscal convertidas em abas com painel de detalhes, teclado e acessibilidade ARIA;
+- São Paulo: **22 municípios e códigos IBGE** copiados do catálogo versionado do backend em `src/kordena_fiscal/gateway/municipal_sp_routing.py`;
+- MG/RJ/PR/MT/MS: **um município-piloto por UF** do inventário `src/kordena_fiscal/control_plane/national_priority_inventory.py`, com documentação normativa de `docs/NFV1_NAT01_PRIORITY_STATES_OFFICIAL_EVIDENCE_2026-11-05.md`.
+
+**Classificação estrita:** `SP_MUNICIPAL_CANDIDATES` é um catálogo consultivo de onboarding, não uma lista de 22 municípios homologados. `NAT_PRIORITY_PILOTS` é um inventário de documentação pública e capacidades, não autorização de produção. Para transmitir é necessário vínculo canônico aprovado, credenciais, certificado, provider preparado e homologação de cada município/UF e contribuinte.
+
+Os testes incluem contagem e códigos dos 22 municípios, as cinco capitais, fluxo ARIA e cenários visuais interativos em Chromium. O CSS e o JS possuem versão de cache `20261106`.
+
