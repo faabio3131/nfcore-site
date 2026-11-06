@@ -22,6 +22,35 @@
     });
   }
 
+  // Fluxo de autoridade: cinco abas acessíveis, com painel de detalhes correspondente.
+  var flowTabs=Array.prototype.slice.call(document.querySelectorAll('[data-flow-tab]'));
+  if(flowTabs.length){
+    var selectFlow=function(index,focus){
+      flowTabs.forEach(function(tab,i){
+        var current=i===index;
+        tab.classList.toggle('active',current);
+        tab.setAttribute('aria-selected',current?'true':'false');
+        tab.setAttribute('tabindex',current?'0':'-1');
+        var panel=document.getElementById(tab.getAttribute('aria-controls'));
+        if(panel)panel.hidden=!current;
+      });
+      if(focus)flowTabs[index].focus();
+    };
+    flowTabs.forEach(function(tab,i){
+      tab.addEventListener('click',function(){selectFlow(i,false);});
+      tab.addEventListener('keydown',function(e){
+        var n=i;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown')n=(i+1)%flowTabs.length;
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp')n=(i+flowTabs.length-1)%flowTabs.length;
+        else if(e.key==='Home')n=0;
+        else if(e.key==='End')n=flowTabs.length-1;
+        else return;
+        e.preventDefault();
+        selectFlow(n,true);
+      });
+    });
+  }
+
   // Contagem regressiva (guia da reforma tributária). Sem JavaScript, fica só o texto com a data.
   var cd=document.getElementById('cd');
   if(cd){
