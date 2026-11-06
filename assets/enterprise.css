@@ -452,13 +452,16 @@ html[data-p=nfcore] .region-body>p,
 html[data-p=nfcore] .capital-paths p{color:#b7c4d8}
 html[data-p=nfcore] .region-count,
 html[data-p=nfcore] .region-chevron{color:#bdaceb}
+/* The legacy shared stylesheet previously lit NFCore .card and .panel at REST.
+   Override both; a glow must require a user interaction. */
+html[data-p=nfcore] :is(.card,.panel){box-shadow:none}
 /* Shared REST state: no fixed neon on Pro, open coverage, selected flow or any card. */
-html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
+html[data-p=nfcore] :is(.card,.panel,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease;
 }
 /* Desktop pointer: every card lights up only under cursor. */
 @media(hover:hover) and (pointer:fine){
- html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):hover{
+ html[data-p=nfcore] :is(.card,.panel,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):hover{
   border-color:#a78bf3;
   box-shadow:inset 0 0 0 1px rgba(172,146,248,.20),0 0 35px rgba(127,84,239,.3);
   background-color:rgba(64,44,107,.16);
@@ -471,17 +474,17 @@ html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-car
  }
 }
 /* Mobile/tablet: focus and press feedback, without permanent hover on touch screens. */
-html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):focus-visible{
+html[data-p=nfcore] :is(.card,.panel,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):focus-visible{
  outline:2px solid #9983e9;outline-offset:2px;
  border-color:#9983e9;
 }
 @media(hover:none){
- html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):active{
+ html[data-p=nfcore] :is(.card,.panel,.strength-card,.intel-card,.price-card,.region-card,.flow-tab):active{
   border-color:#a78bf3;box-shadow:0 0 22px rgba(127,84,239,.22);
  }
 }
 @media(prefers-reduced-motion:reduce){
- html[data-p=nfcore] :is(.card,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
+ html[data-p=nfcore] :is(.card,.panel,.strength-card,.intel-card,.price-card,.region-card,.flow-tab){
   transition:none!important;
  }
  html[data-p=nfcore] :is(.strength-card,.intel-card,.price-card):hover{transform:none!important}
