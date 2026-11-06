@@ -1,0 +1,179 @@
+/* NFCore Enterprise — camada visual específica, sem alterar a identidade de outros produtos.
+   Superfícies responsivas, contraste e estado de navegação em quatro páginas estáticas. */
+html[data-p=nfcore]{
+  --bg:#060812;--s1:#0d1220;--s2:#11192c;--ln:#24314b;
+  --tx:#f0f4ff;--mu:#b4bed3;--dim:#96a5bf;--a:#885cf6;--a2:#c5b2ff;
+  --argb:136,92,246;--hl:#d0c1ff;--btn:#8056ef;--btnfg:#fff;--glow:.22;
+  background:var(--bg);
+}
+html[data-p=nfcore] body{
+  background:radial-gradient(ellipse 78% 850px at 100% 0%,rgba(76,58,152,.16),transparent 70%),var(--bg);
+  min-width:280px;
+}
+html[data-p=nfcore] main{min-width:0}
+html[data-p=nfcore] .wrap{width:min(1240px,calc(100% - 64px))}
+html[data-p=nfcore] .nav{height:76px;background:rgba(7,10,21,.93);border-bottom-color:rgba(123,142,186,.2)}
+html[data-p=nfcore] .nav .wrap{gap:16px}
+html[data-p=nfcore] .nav a.brand,
+html[data-p=nfcore] .foot a.brand{
+  padding:0;height:auto;border:0;background:none;border-radius:0;
+  min-width:0;max-width:100%;white-space:normal;
+}
+html[data-p=nfcore] .nav .brand .wm img{height:37px;max-width:180px;object-fit:contain;object-position:left}
+html[data-p=nfcore] .nav .brand .wm small{color:#a7a7ff;font-size:9px;letter-spacing:.08em}
+html[data-p=nfcore] .menu{gap:clamp(12px,1.6vw,25px);font-size:13px;white-space:nowrap}
+html[data-p=nfcore] .menu a{transition:color .16s}
+html[data-p=nfcore] .nav .nr{flex:none}
+html[data-p=nfcore] .nav .btn.sm{height:40px;border-radius:10px}
+html[data-p=nfcore] .nav .menu.open{top:76px}
+html[data-p=nfcore] .btn{white-space:normal;min-width:0;overflow-wrap:break-word;line-height:1.25}
+html[data-p=nfcore] .btn.p,
+html[data-p=nfcore] .btn.k{box-shadow:0 5px 22px rgba(104,73,208,.2)}
+html[data-p=nfcore] :is(h1,h2,h3,p,span,li,a){overflow-wrap:break-word}
+html[data-p=nfcore] h1{
+  font-size:clamp(36px,4.4vw,64px);
+  line-height:1.07;letter-spacing:-.045em;
+  text-wrap:balance;
+}
+html[data-p=nfcore] h2{font-size:clamp(28px,3.15vw,44px);line-height:1.12;text-wrap:balance}
+html[data-p=nfcore] h3{text-wrap:balance}
+html[data-p=nfcore] .grad{color:#c7b3ff}
+html[data-p=nfcore] .phero{padding:clamp(54px,7vw,106px) 0 clamp(58px,8vw,100px);overflow:hidden}
+html[data-p=nfcore] .phero:before{opacity:.2}
+html[data-p=nfcore] .phero .pg{
+  grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+  gap:clamp(28px,4.5vw,70px);align-items:center;
+}
+html[data-p=nfcore] .pg>*{min-width:0}
+html[data-p=nfcore] .phero h1{margin:22px 0 22px}
+html[data-p=nfcore] .phero .lead{max-width:660px;color:#bbc7df;font-size:clamp(16px,1.55vw,19px)}
+html[data-p=nfcore] .phero .b{gap:12px}
+html[data-p=nfcore] .phero .b .btn{height:auto;min-height:50px;padding:13px 19px}
+html[data-p=nfcore] .phero .note{color:#a5b1c8;max-width:620px;line-height:1.55}
+html[data-p=nfcore] .dg{
+  margin:0;position:relative;border-radius:22px;border:1px solid rgba(179,159,243,.25);
+  background:#0c0d1d;box-shadow:0 30px 110px -45px rgba(70,53,148,.6);
+}
+html[data-p=nfcore] .dg img{aspect-ratio:1.15;object-fit:cover}
+html[data-p=nfcore] .sec{scroll-margin-top:100px}
+html[data-p=nfcore] .soft{background:linear-gradient(180deg,#0a0f1d,#0a0d18);border-color:rgba(125,145,194,.13)}
+html[data-p=nfcore] .card{background:linear-gradient(160deg,#111829,#0c111f);border-color:rgba(134,154,198,.22)}
+html[data-p=nfcore] .card:hover{border-color:rgba(175,149,255,.45)}
+html[data-p=nfcore] .card p{color:#b9c4d6}
+html[data-p=nfcore] .pill{white-space:normal}
+html[data-p=nfcore] .foot{background:#080b15}
+html[data-p=nfcore] .foot .g{grid-template-columns:1.6fr repeat(3,minmax(0,1fr))}
+html[data-p=nfcore] .foot .wm img{max-width:210px}
+html[data-p=nfcore] .foot .fb{color:#a5b1c8}
+html[data-p=nfcore] a:focus-visible,
+html[data-p=nfcore] button:focus-visible{outline:3px solid #b4a2ff;outline-offset:3px}
+html[data-p=nfcore] .fab{box-shadow:0 15px 35px #0009}
+
+/* Valor imediatamente verificável abaixo do hero */
+.hero-proof{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.hero-proof span{display:flex;flex-direction:column;gap:3px;background:rgba(22,28,50,.88);border:1px solid rgba(135,150,197,.24);border-radius:12px;padding:11px 13px;font-size:12px;color:#b1bed4;min-width:155px}
+.hero-proof b{color:#e8eaff;font-size:12px;letter-spacing:.03em}
+.enterprise-section{position:relative}
+.enterprise-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,100px);align-items:center}
+.enterprise-split>*{min-width:0}
+.enterprise-section h2{margin:14px 0 20px;max-width:800px}
+.enterprise-section .sub{max-width:720px}
+.feature-list{display:grid;gap:14px;margin:30px 0}
+.feature-list p{display:grid;gap:4px;border-left:2px solid #8363dc;padding:4px 0 4px 18px}
+.feature-list strong{color:#fff;font-size:15px}
+.feature-list span{font-size:14px;color:#adb9d0;line-height:1.6}
+.text-link{display:inline-flex;align-items:center;gap:8px;color:#d1c5ff;font-weight:700;text-decoration:underline;text-underline-offset:6px;text-decoration-color:#7b67ce}
+.text-link:hover{color:#fff}
+.architecture-diagram{border:1px solid rgba(135,151,194,.28);border-radius:24px;background:radial-gradient(circle at 50% 18%,rgba(122,91,234,.17),transparent 70%),#0d1424;padding:clamp(20px,3vw,36px);text-align:center;box-shadow:0 25px 85px -60px rgba(133,101,248,.8)}
+.diagram-top,.diagram-core,.diagram-documents{border:1px solid #37415f;border-radius:13px;padding:16px}
+.diagram-top{background:#101b2e;display:grid;gap:6px}
+.diagram-top span,.diagram-core small,.geo-head,.intel-number{font-size:11px;letter-spacing:.13em;font-weight:800;color:#aeb3d6}
+.diagram-top b{color:#f4f5ff;font-size:16px}
+.diagram-arrow{color:#a995f4;font-size:24px;line-height:1.4}
+.diagram-core{background:linear-gradient(130deg,rgba(100,73,195,.35),rgba(32,48,86,.35));border-color:#8b71f0;display:grid;gap:12px}
+.diagram-core strong{font-size:clamp(16px,1.65vw,22px);line-height:1.3;color:#fff}
+.diagram-steps,.diagram-documents{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.diagram-steps span{font-size:12px;border:1px solid #696592;background:#222444;border-radius:6px;padding:7px 9px;color:#dcd9ff}
+.diagram-documents{background:#101829;padding:12px}
+.diagram-documents span{flex:1;min-width:65px;padding:12px;border:1px solid #303d63;background:#18223a;color:#e3e5ff;border-radius:10px;font-weight:800}
+.diagram-caption{font-size:12px;color:#aab6ca;line-height:1.5;margin-top:16px}
+.sentinel-section{background:linear-gradient(155deg,#0e1221 0%,#0c1020 65%,#080b16 100%);border-top:1px solid #202944;border-bottom:1px solid #202944}
+.intel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
+.intel-card{min-width:0;padding:clamp(20px,2.2vw,30px);border:1px solid #2c3856;border-radius:20px;background:linear-gradient(145deg,rgba(29,40,68,.85),rgba(14,20,39,.85))}
+.intel-card h3{color:#f9f9ff;font-size:clamp(18px,1.5vw,22px);margin:22px 0 10px}
+.intel-card p{color:#becbe1;font-size:14px;line-height:1.7}
+.evidence-note{color:#a6b4cb;font-size:13px;line-height:1.65;margin-top:24px;max-width:920px}
+.geo-panel{border:1px solid #364062;border-radius:22px;padding:clamp(22px,3vw,34px);background:linear-gradient(140deg,#141d33,#0d1323)}
+.geo-head{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #34405e;padding-bottom:17px}
+.geo-states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.geo-states div{min-width:0;padding:18px 12px;background:#182440;border:1px solid #35476b;border-radius:12px;text-align:center}
+.geo-states b{display:block;font:800 clamp(22px,2.3vw,30px)/1.2 var(--fd);color:#e6e0ff}
+.geo-states span{display:block;color:#aebdd6;font-size:11px;margin-top:8px;line-height:1.4}
+.geo-panel>p{font-size:12px;color:#b6c1d4;line-height:1.6}
+.pricing-section{background:#0b1020;border-top:1px solid #1f2a45}
+.pricing-intro{display:flex;justify-content:space-between;align-items:end;gap:35px}
+.pricing-intro .sub{max-width:390px;font-size:15px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px;align-items:stretch}
+.price-card{min-width:0;display:flex;flex-direction:column;border:1px solid #33405e;border-radius:22px;padding:clamp(16px,1.65vw,24px);background:linear-gradient(155deg,#151e33,#0e1424)}
+.price-card.highlighted{border-color:#9c8ae9;background:linear-gradient(150deg,#1b2445,#121a32);box-shadow:0 20px 65px rgba(91,65,180,.21)}
+.price-heading{min-height:91px}
+.price-heading .price-type{font:700 22px/1.3 var(--fd);color:#fff}
+.price-heading p{font-size:13px;color:#abb8d1;margin-top:8px}
+.plan-flag{display:inline-block;color:#decfff;font-size:10px;border:1px solid #8e75da;border-radius:99px;padding:4px 8px;margin-left:8px;vertical-align:middle}
+.price{border-bottom:1px solid #34405a;padding-bottom:22px;margin-bottom:18px;display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.price>span{font-size:17px;font-weight:700;color:#bec7de}
+.price strong{font:800 clamp(32px,3.05vw,44px)/1.1 var(--fd);letter-spacing:-.06em;color:#fff}
+.price small{font-size:13px;color:#afb9ce}
+.price-card ul{display:grid;gap:14px;margin:0 0 28px;padding:0}
+.price-card li{position:relative;padding-left:23px;font-size:13px;line-height:1.5;color:#c6d1e3}
+.price-card li:before{content:"✓";position:absolute;left:0;color:#7ee4ba;font-weight:800}
+.price-card b{color:#f0f3ff}
+.price-card .plan-btn{margin-top:auto;width:100%;height:auto;min-height:48px;padding:12px 10px;color:#e5e9ff;border-color:#56617d;background:#202d46;font-size:13px}
+.price-card .plan-btn.primary{background:#8560f1;color:#fff;border-color:#8560f1}
+.price-card .plan-btn:hover{filter:brightness(1.15)}
+.pricing-fineprint{font-size:12px;line-height:1.7;color:#abb7ce;max-width:1000px;margin-top:24px}
+html[data-p=nfcore] #planos,html[data-p=nfcore] #cobertura{scroll-margin-top:96px}
+html[data-p=nfcore] .notice{background:#111c31;border-color:#344360;color:#d7dded}
+/* Ajustes de grade para desktop compactos, tablets e telefones */
+@media(max-width:1190px){
+ html[data-p=nfcore] .menu,html[data-p=nfcore] .nr .btn.k{display:none}
+ html[data-p=nfcore] .burger{display:grid}
+ html[data-p=nfcore] .menu.open{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:#0b1020;padding:10px 32px 22px;border-bottom:1px solid #2c3653;box-shadow:0 18px 35px #0007}
+ html[data-p=nfcore] .menu.open a{padding:13px 7px;border-bottom:1px solid #24304b}
+ html[data-p=nfcore] .pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+ html[data-p=nfcore] .phero .pg,.enterprise-split{grid-template-columns:1fr;gap:32px}
+ html[data-p=nfcore] .phero{padding:60px 0}
+ html[data-p=nfcore] .phero .vis{max-width:680px}
+ html[data-p=nfcore] .dg img{aspect-ratio:16/9}
+ html[data-p=nfcore] .intel-grid{grid-template-columns:1fr}
+ html[data-p=nfcore] .pricing-intro{display:block}
+ html[data-p=nfcore] .pricing-intro .sub{margin-top:12px;max-width:700px}
+ html[data-p=nfcore] .foot .g{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ html[data-p=nfcore] .wrap{width:calc(100% - 32px)}
+ html[data-p=nfcore] .nav{height:68px}
+ html[data-p=nfcore] .nav .brand .wm img{height:32px}
+ html[data-p=nfcore] .menu.open{top:68px;padding:10px 18px 18px}
+ html[data-p=nfcore] .phero{padding:40px 0 58px}
+ html[data-p=nfcore] h1{font-size:clamp(31px,9.1vw,44px);letter-spacing:-.035em}
+ html[data-p=nfcore] .phero h1{font-size:clamp(31px,9.1vw,44px)}
+ html[data-p=nfcore] h2{font-size:clamp(27px,7.4vw,38px)}
+ html[data-p=nfcore] .btn{max-width:100%}
+ html[data-p=nfcore] .phero .b{display:grid;grid-template-columns:1fr}
+ html[data-p=nfcore] .phero .b .btn{width:100%}
+ html[data-p=nfcore] .hero-proof{display:grid;grid-template-columns:1fr 1fr}
+ html[data-p=nfcore] .hero-proof span:last-child{grid-column:1/-1}
+ html[data-p=nfcore] .hero-proof span{min-width:0}
+ html[data-p=nfcore] .geo-states{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html[data-p=nfcore] .pricing-grid{grid-template-columns:1fr}
+ html[data-p=nfcore] .price-heading{min-height:initial;margin-bottom:18px}
+ html[data-p=nfcore] .price strong{font-size:44px}
+ html[data-p=nfcore] .price-card{padding:24px}
+ html[data-p=nfcore] .foot .g{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-p=nfcore] *{scroll-behavior:auto}
+}
