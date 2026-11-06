@@ -107,7 +107,7 @@ class TestSiteStructure(unittest.TestCase):
                        "PR", "MT", "MS", "IBGE", "NF-e", "NFC-e", "NFS-e"):
             with self.subTest(marker=marker):
                 self.assertIn(marker, html)
-        self.assertIn("não declara todos os municípios homologados", html)
+        self.assertIn("Nenhuma cidade listada é automaticamente homologada em produção.", html)
         self.assertIn("A IA não emite nem autoriza notas", html)
 
     def test_sp_22_municipalities_and_5_capitals_are_exact(self) -> None:
@@ -126,8 +126,8 @@ class TestSiteStructure(unittest.TestCase):
             "Guarujá": "3518701", "São Vicente": "3551009",
         }
         rows = re.findall(
-            r'<li><span class="city-index">\\d{2}</span>'
-            r'<span class="city-name">([^<]+)</span><code>(\\d{7})</code></li>',
+            r'<li><span class="city-index">\d{2}</span>'
+            r'<span class="city-name">([^<]+)</span><code>(\d{7})</code></li>',
             html,
         )
         self.assertEqual(len(rows), 22)
