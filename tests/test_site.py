@@ -163,6 +163,22 @@ class TestSiteStructure(unittest.TestCase):
         self.assertIn("Sentinela Normativo", html)
         self.assertIn("“Nível militar” descreve", html)
 
+    def test_original_palette_and_hover_only_card_emphasis(self) -> None:
+        css = (ROOT / "assets" / "enterprise.css").read_text(encoding="utf-8")
+        for marker in ("--a:#885cf6", "--btn:#8056ef", "--bg:#060812",
+                       "width:70%", ".price-card.highlighted", "(hover:hover)",
+                       ".strength-card", ".intel-card", ".region-card", ".flow-tab"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, css)
+        self.assertNotIn("--a:#b32bff", css)
+        self.assertNotIn("--btn:#a02af5", css)
+        self.assertIn("border:1px solid #33405e", css)
+        self.assertIn("box-shadow:none", css)
+        self.assertIn("html[data-p=nfcore] .price-card .plan-btn.primary", css)
+        for page in PAGES:
+            html = (ROOT / page).read_text(encoding="utf-8")
+            self.assertIn("assets/enterprise.css?v=20261106-palette", html)
+
     def test_static_assets_and_legacy_urls(self) -> None:
         self.assertTrue((ROOT / ".nojekyll").exists())
         self.assertEqual((ROOT / "CNAME").read_text(encoding="utf-8").strip(), "nfcore.com.br")
