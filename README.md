@@ -15,7 +15,7 @@ A estrutura utiliza links relativos, `.nojekyll` e `CNAME` no raiz, sem SPA e se
 - WhatsApp: +55 11 97835-0851
 - E-mail: comercial@fmtecnologiaia.com.br
 
-Planos oficiais mensais: Starter R$ 99 (300 notas), Pro R$ 249 (1.500 notas), Business R$ 590 (6.000 notas) e Enterprise R$ 1.490 (25.000 notas). A contratação é **assistida**, sem checkout simulado. O site não altera billing, gateway, credenciais, emissão ou regras fiscais de produção.
+Planos oficiais mensais: Starter R$ 99 (300 notas), Pro R$ 249 (1.500 notas), Business R$ 590 (6.000 notas) e Enterprise R$ 1.490 (25.000 notas). A partir de 09/11/2026, o caminho principal de contratação é o teste grátis de 14 dias, self-service, em `https://app.nfcore.com.br/trial.html` (sem toque manual: o visitante ativa a própria conta pelo portal). A contratação assistida por WhatsApp continua disponível como alternativa para operações maiores, mas deixou de ser o único caminho. O site não altera billing, gateway, credenciais, emissão ou regras fiscais de produção; nenhum checkout é simulado — os botões "Contratar" e o menu levam ao fluxo real do portal (`trial.html`).
 
 ## Testes
 ```bash
