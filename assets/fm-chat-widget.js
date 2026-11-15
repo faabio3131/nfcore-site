@@ -57,8 +57,10 @@
     "#fmchat-btn:hover{transform:scale(1.06);}" +
     "#fmchat-btn svg{width:30px;height:30px;fill:#fff;}" +
     "#fmchat-panel{position:fixed;bottom:92px;right:20px;width:340px;max-width:92vw;height:480px;" +
-    "max-height:72vh;background:#fff;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.28);" +
-    "display:none;flex-direction:column;overflow:hidden;z-index:999999;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}" +
+    "max-height:72vh;background:#fff;color:#111;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.28);" +
+    "display:none;flex-direction:column;overflow:hidden;z-index:999999;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;" +
+    "text-align:left;line-height:normal;}" +
+    "#fmchat-panel *{box-sizing:border-box;}" +
     "#fmchat-panel.open{display:flex;}" +
     "#fmchat-head{background:" + ACCENT + ";color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;}" +
     "#fmchat-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.25);" +
@@ -67,13 +69,13 @@
     "#fmchat-head .fmchat-sub{font-size:11px;opacity:.85;}" +
     "#fmchat-close{margin-left:auto;cursor:pointer;background:none;border:none;color:#fff;font-size:18px;opacity:.85;}" +
     "#fmchat-body{flex:1;overflow-y:auto;padding:12px;background:#e9edf0;display:flex;flex-direction:column;gap:8px;}" +
-    ".fmchat-msg{max-width:80%;padding:8px 11px;border-radius:9px;font-size:13.5px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;}" +
-    ".fmchat-msg.bot{background:#fff;align-self:flex-start;border-top-left-radius:2px;}" +
-    ".fmchat-msg.user{background:#d9fdd3;align-self:flex-end;border-top-right-radius:2px;}" +
+    ".fmchat-msg{max-width:80%;padding:8px 11px;border-radius:9px;font-size:13.5px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;color:#111;}" +
+    ".fmchat-msg.bot{background:#fff;align-self:flex-start;border-top-left-radius:2px;color:#111;}" +
+    ".fmchat-msg.user{background:#d9fdd3;align-self:flex-end;border-top-right-radius:2px;color:#111;}" +
     ".fmchat-msg.sys{background:transparent;align-self:center;color:#667;font-size:12px;text-align:center;}" +
     ".fmchat-typing{align-self:flex-start;background:#fff;border-radius:9px;padding:8px 12px;font-size:12px;color:#888;}" +
     "#fmchat-foot{display:flex;border-top:1px solid #ddd;padding:8px;gap:6px;background:#fff;}" +
-    "#fmchat-input{flex:1;border:1px solid #ccc;border-radius:18px;padding:8px 13px;font-size:13.5px;outline:none;}" +
+    "#fmchat-input{flex:1;border:1px solid #ccc;border-radius:18px;padding:8px 13px;font-size:13.5px;outline:none;color:#111;background:#fff;}" +
     "#fmchat-send{background:" + ACCENT + ";border:none;color:#fff;border-radius:50%;width:36px;height:36px;" +
     "display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;}" +
     ".fmchat-wabtn{display:inline-block;margin-top:6px;background:#128C7E;color:#fff !important;text-decoration:none;" +
