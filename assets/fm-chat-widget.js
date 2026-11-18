@@ -81,14 +81,14 @@
     ".fmchat-wabtn{display:inline-block;margin-top:6px;background:#128C7E;color:#fff !important;text-decoration:none;" +
     "padding:7px 12px;border-radius:16px;font-size:12.5px;}";
 
-    "#fmchat-invite{position:fixed;bottom:25px;right:92px;z-index:999997;max-width:min(300px,calc(100vw - 112px));display:flex;align-items:center;gap:6px;background:#fff;color:#172033;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.17);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}" +
+  css += "#fmchat-invite{position:fixed;bottom:25px;right:92px;z-index:999997;max-width:min(300px,calc(100vw - 112px));display:flex;align-items:center;gap:6px;background:#fff;color:#172033;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.17);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}" +
     "#fmchat-invite[hidden]{display:none;}" +
     "#fmchat-invite-open{border:0;background:transparent;color:inherit;cursor:pointer;text-align:left;padding:10px 4px 10px 12px;min-width:0;}" +
     "#fmchat-invite-open strong{display:block;font-size:12px;line-height:1.35;color:#1e293b;}" +
     "#fmchat-invite-open span{display:block;font-size:12px;line-height:1.4;color:#475569;}" +
     "#fmchat-invite-dismiss{align-self:flex-start;flex:none;background:transparent;border:0;color:#64748b;cursor:pointer;padding:7px 9px;font-size:17px;line-height:1;}" +
     "#fmchat-invite :focus-visible{outline:2px solid #2563eb;outline-offset:2px;}" +
-    "@media(max-width:480px){#fmchat-invite{bottom:23px;right:88px;max-width:calc(100vw - 108px);}#fmchat-invite-open{padding:8px 2px 8px 10px;}#fmchat-invite-open span{font-size:11px;}}" +
+    "@media(max-width:480px){#fmchat-invite{bottom:23px;right:88px;max-width:calc(100vw - 108px);}#fmchat-invite-open{padding:8px 2px 8px 10px;}#fmchat-invite-open span{font-size:11px;}}";
 
   var styleEl = document.createElement("style");
   styleEl.textContent = css;
@@ -128,9 +128,12 @@
   invite.appendChild(inviteOpen);
   invite.appendChild(inviteDismiss);
   document.body.appendChild(invite);
-  try { invite.hidden = window.sessionStorage.getItem(INVITE_KEY) === "1"; } catch (e) {}
+  var inviteDismissed = false;
+  try { inviteDismissed = window.sessionStorage.getItem(INVITE_KEY) === "1"; } catch (e) {}
+  invite.hidden = inviteDismissed;
   inviteOpen.addEventListener("click", function () { btn.click(); });
   inviteDismiss.addEventListener("click", function () {
+    inviteDismissed = true;
     invite.hidden = true;
     try { window.sessionStorage.setItem(INVITE_KEY, "1"); } catch (e) {}
   });
@@ -174,7 +177,7 @@
   var opened = false;
   btn.addEventListener("click", function () {
     panel.classList.toggle("open");
-    invite.hidden = panel.classList.contains("open") || invite.hidden;
+    invite.hidden = inviteDismissed || panel.classList.contains("open");
     if (!opened && panel.classList.contains("open")) {
       opened = true;
       addMsg(GREETING, "bot");
@@ -186,6 +189,7 @@
   });
   panel.querySelector("#fmchat-close").addEventListener("click", function () {
     panel.classList.remove("open");
+    invite.hidden = inviteDismissed;
   });
 
   function showTyping() {
