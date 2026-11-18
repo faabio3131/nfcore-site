@@ -81,6 +81,15 @@
     ".fmchat-wabtn{display:inline-block;margin-top:6px;background:#128C7E;color:#fff !important;text-decoration:none;" +
     "padding:7px 12px;border-radius:16px;font-size:12.5px;}";
 
+    "#fmchat-invite{position:fixed;bottom:25px;right:92px;z-index:999997;max-width:min(300px,calc(100vw - 112px));display:flex;align-items:center;gap:6px;background:#fff;color:#172033;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.17);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}" +
+    "#fmchat-invite[hidden]{display:none;}" +
+    "#fmchat-invite-open{border:0;background:transparent;color:inherit;cursor:pointer;text-align:left;padding:10px 4px 10px 12px;min-width:0;}" +
+    "#fmchat-invite-open strong{display:block;font-size:12px;line-height:1.35;color:#1e293b;}" +
+    "#fmchat-invite-open span{display:block;font-size:12px;line-height:1.4;color:#475569;}" +
+    "#fmchat-invite-dismiss{align-self:flex-start;flex:none;background:transparent;border:0;color:#64748b;cursor:pointer;padding:7px 9px;font-size:17px;line-height:1;}" +
+    "#fmchat-invite :focus-visible{outline:2px solid #2563eb;outline-offset:2px;}" +
+    "@media(max-width:480px){#fmchat-invite{bottom:23px;right:88px;max-width:calc(100vw - 108px);}#fmchat-invite-open{padding:8px 2px 8px 10px;}#fmchat-invite-open span{font-size:11px;}}" +
+
   var styleEl = document.createElement("style");
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
@@ -90,6 +99,41 @@
   btn.setAttribute("aria-label", "Abrir chat");
   btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.07-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>';
   document.body.appendChild(btn);
+
+  var INVITATIONS = {
+    fm: "Conheça nossas soluções ou fale com nossa equipe.",
+    nfcore: "Precisa de ajuda com emissão fiscal ou quer conhecer o NFCore?",
+    kordena: "Conheça a gestão inteligente para seu restaurante.",
+    ironfit: "Tire dúvidas e descubra como transformar sua academia."
+  };
+  var INVITATION = CFG.invitation || INVITATIONS[SITE] || "Como podemos ajudar?";
+  var INVITE_KEY = "fm_chat_invite_dismissed_" + SITE;
+  var invite = document.createElement("div");
+  invite.id = "fmchat-invite";
+  var inviteOpen = document.createElement("button");
+  inviteOpen.id = "fmchat-invite-open";
+  inviteOpen.type = "button";
+  inviteOpen.setAttribute("aria-label", "Abrir atendimento: " + INVITATION);
+  var inviteTitle = document.createElement("strong");
+  inviteTitle.textContent = "Atendimento Inteligente";
+  var inviteMessage = document.createElement("span");
+  inviteMessage.textContent = INVITATION;
+  inviteOpen.appendChild(inviteTitle);
+  inviteOpen.appendChild(inviteMessage);
+  var inviteDismiss = document.createElement("button");
+  inviteDismiss.id = "fmchat-invite-dismiss";
+  inviteDismiss.type = "button";
+  inviteDismiss.setAttribute("aria-label", "Dispensar convite de atendimento");
+  inviteDismiss.textContent = "×";
+  invite.appendChild(inviteOpen);
+  invite.appendChild(inviteDismiss);
+  document.body.appendChild(invite);
+  try { invite.hidden = window.sessionStorage.getItem(INVITE_KEY) === "1"; } catch (e) {}
+  inviteOpen.addEventListener("click", function () { btn.click(); });
+  inviteDismiss.addEventListener("click", function () {
+    invite.hidden = true;
+    try { window.sessionStorage.setItem(INVITE_KEY, "1"); } catch (e) {}
+  });
 
   var panel = document.createElement("div");
   panel.id = "fmchat-panel";
@@ -130,6 +174,7 @@
   var opened = false;
   btn.addEventListener("click", function () {
     panel.classList.toggle("open");
+    invite.hidden = panel.classList.contains("open") || invite.hidden;
     if (!opened && panel.classList.contains("open")) {
       opened = true;
       addMsg(GREETING, "bot");
